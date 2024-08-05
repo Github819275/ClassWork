@@ -1,0 +1,4 @@
+length = int(input('Enter the length of the rectangle: '))
+width = int(input('Enter the length of the rectangle: '))
+area = length * width
+print('Area is :', area)
