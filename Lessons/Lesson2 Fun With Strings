@@ -1,0 +1,51 @@
+#Q1
+# s = input('Enter any word: ')
+# print(s[:-2])
+
+#Q2
+# s = input('Enter any word: ')
+# print(s[:-2] + s[-1])
+
+#Q3
+# s = input('Enter any word: ')
+# new = ""
+# for j in range(len(s)):
+#     if s[j] != 'm':
+#         new = new + s[j]
+# print(new)
+
+#Q4
+# s = input('Enter any word: ')
+# status = False
+# for j in range(len(s) - 2):
+#     if s[j:j+4] == 'gold':
+#         status = True
+# if status:
+#     print('Found')
+# else:
+#     print('Not Found')
+
+#Q5
+# s = input('Enter any word: ')
+# s2 = input('Enter any word: ')
+# if s == s2:
+#     print('Equal')
+# else:
+#     print('Not Equal')
+
+#Q6
+# s = input('Enter any word: ')
+# s2 = input('Enter any word: ')
+# if s.capitalize() == s2.capitalize():
+#     print('Equal')
+# else:
+#     print('Not Equal')
+
+#Q7
+# s = input('Enter your name: ')
+# print(len(s))
+
+#Q8
+# s = input('Enter your name: ')
+# print("Hello", s, '. Your name consists of', len(s),
+#       'characters and your initial is', s[0])
