@@ -1,0 +1,13 @@
+thisArray = ['0'] * 1000
+index = 1
+total = 0
+error = False
+search  = input('Enter string to search: ')
+
+while index <= 1000 and not error:
+    if len(thisArray[index]) > 5:
+        if thisArray[index] == search[0:4]:
+            total = total + len(thisArray[index]) - 5
+        index = index + 1
+    else:
+        error = True
