@@ -1,0 +1,21 @@
+def valid_registration(s):
+
+    if len(s) < 6 or len(s) > 9:
+        return False
+    for j in range(3):
+        if s[j] < 'A' or s[j] > 'Z':
+            return False
+    for j in range(3, 5):
+        if s[j] < '0' or s[j] > '9':
+            return False
+    for j in range(5, len(s)):
+        if s[j] < 'A' or s[j] > 'Z':
+            return False
+    return True
+
+
+s = input('Enter registration number: ')
+if valid_registration(s):
+    print("Valid")
+else:
+    print("Invalid")
