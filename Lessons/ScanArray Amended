@@ -1,13 +1,21 @@
 thisArray = ['0'] * 1000
+thisArray[0] = 'abcde1234567'
+thisArray[1] = 'abcde8910'
 index = 1
 total = 0
 error = False
-search  = input('Enter string to search: ')
+search = input('Enter string to search: ')
 
 while index <= 1000 and not error:
     if len(thisArray[index]) > 5:
-        if thisArray[index] == search[0:4]:
+        if thisArray[index][:4] == search:
             total = total + len(thisArray[index]) - 5
         index = index + 1
     else:
         error = True
+
+if index != 0:
+    arrayResult = int(total/(index-1))
+    print(arrayResult)
+else:
+    print('No matches found')
