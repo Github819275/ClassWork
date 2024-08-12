@@ -1,0 +1,10 @@
+def CalculateCustomerID():
+    Surname = input('Enter surname: ')
+    Length = len(Surname)
+    CustomerID = 0
+    for i in range(Length):
+        NextChar = Surname[i]
+        NextCodeNumber = ord(NextChar)
+        CustomerID = CustomerID + NextCodeNumber
+
+    print('Customer ID is', CustomerID)
