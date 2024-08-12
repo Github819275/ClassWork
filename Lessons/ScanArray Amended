@@ -1,21 +1,29 @@
-thisArray = ['0'] * 1000
-thisArray[0] = 'abcde1234567'
-thisArray[1] = 'abcde8910'
-index = 1
-total = 0
-error = False
-search = input('Enter string to search: ')
+def ScanArray(SearchString):
+    Index = 1
+    Total = 0
+    Error = False
 
-while index <= 1000 and not error:
-    if len(thisArray[index]) > 5:
-        if thisArray[index][:4] == search:
-            total = total + len(thisArray[index]) - 5
-        index = index + 1
+    while Index <= 1000 and not Error:
+        if len(ThisArray[Index]) > 5:
+            if ThisArray[Index][:4] == SearchString:
+                Total = Total + len(ThisArray[Index]) - 5
+            Index = Index + 1
+        else:
+            Error = True
+
+    if Index != 0:
+        ArrayResult = int(Total / (Index - 1))
+        print(ArrayResult)
     else:
-        error = True
+        print('No matches found')
 
-if index != 0:
-    arrayResult = int(total/(index-1))
-    print(arrayResult)
-else:
-    print('No matches found')
+
+ThisArray = ['0'] * 1000
+ArrayResult = 0
+
+ThisArray[0] = 'abcde1234567'
+ThisArray[1] = 'abcde8910'
+
+SearchString = input('Enter string to search: ')
+ScanArray(SearchString)
+
