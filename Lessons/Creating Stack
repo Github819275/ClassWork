@@ -1,0 +1,60 @@
+stack = ['' for i in range(10)]
+stackPointer = 0
+
+
+def pop():
+    global stackPointer
+    if stackPointer == 0:
+        print('')
+        print('****************')
+        print('Stack is empty')
+        print('****************')
+        print('')
+    else:
+        stack[stackPointer - 1] = ''
+        stackPointer = stackPointer - 1
+
+
+def display_stack():
+    print('')
+    print('****************')
+    print(stack)
+    print('Stack Pointer:', stackPointer)
+    print('****************')
+    print('')
+
+
+def push():
+    global stackPointer  # need to allow the function to be able to use the variable
+    if stackPointer == 10:
+        print('')
+        print('****************')
+        print('Stack is full')
+        print('****************')
+        print('')
+    else:
+        item = input('Enter data: ')
+        stack[stackPointer] = item
+        stackPointer = stackPointer + 1
+
+
+def menu():
+    print('1. Push')
+    print('2. Pop')
+    print('3. Exit')
+    opt = int(input('Select a number: ... '))
+
+    if opt == 1:
+        push()
+    elif opt == 2:
+        pop()
+    elif opt == 3:
+        exit()
+    display_stack()
+    menu()
+
+
+# Main Program
+menu()
+
+
