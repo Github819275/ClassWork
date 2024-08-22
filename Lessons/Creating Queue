@@ -1,0 +1,68 @@
+HeadPointer = 0
+TailPointer = 0
+q = [0 for i in range(10)]
+count = 0
+
+
+def display_queue():
+    print('')
+    print('****************')
+    print(q)
+    print('Head ptr:', HeadPointer, ' Tail ptr:', TailPointer)
+    print('****************')
+    print('')
+
+
+def enqueue():
+    global HeadPointer
+    global TailPointer
+    global count
+    if count == 10:
+        print('')
+        print('****************')
+        print('Queue is full')
+        print('****************')
+        print('')
+    else:
+        data = int(input('Enter integer: '))
+        q[TailPointer] = data
+        TailPointer = TailPointer + 1
+        if TailPointer == 10:
+            TailPointer = 0
+        count = count + 1
+
+
+def dequeue():
+    global HeadPointer
+    global TailPointer
+    global count
+    if count == 0:
+        print('')
+        print('****************')
+        print('Queue is empty')
+        print('****************')
+        print('')
+    else:
+        q[HeadPointer] = 0
+        HeadPointer = HeadPointer + 1
+        if HeadPointer == 10:
+            HeadPointer = 0
+        count = count - 1
+
+
+def menu():
+    print('1. Enqueue')
+    print('2. Dequeue')
+    print('3. Exit')
+    opt = int(input('Enter Number: '))
+    if opt == 1:
+        enqueue()
+    elif opt == 2:
+        dequeue()
+    elif opt == 3:
+        exit()
+    display_queue()
+    menu()
+
+
+menu()
