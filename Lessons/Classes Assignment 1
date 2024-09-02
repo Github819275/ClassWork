@@ -1,0 +1,12 @@
+# DECLARE name : STRING
+# DECLARE level : STRING
+class Student:
+    def __init__(self):
+        self.name = ''
+        self.level = ''
+
+
+# Main program
+x = Student()
+x.name = "ibrahim"
+x.level = "A2"
