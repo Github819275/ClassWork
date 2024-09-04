@@ -19,6 +19,7 @@ class Teacher(Staff):
         self.__classroom = cr
 
     def show(self):
+        Staff.show(self)
         print('Form Group:', self.__formgroup)
         print('Classroom:', self.__classroom)
 
@@ -30,6 +31,7 @@ class SupportStaff(Staff):
         self.__department = dep
 
     def show(self):
+        Staff.show(self)
         print('Part-Time:', self.__parttime)
         print('Classroom:', self.__department)
 
@@ -47,4 +49,3 @@ z.show()
 print('*************')
 a = SupportStaff(24, 'Xr', 'Rana', 'Taha', 1200000, True, 'Bahrain Town')
 a.show()
-
