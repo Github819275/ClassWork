@@ -1,0 +1,77 @@
+class Name:
+    def __init__(self, t, fn, sn):
+        self.__title = t
+        self.__firstname = fn
+        self.__surname = sn
+
+    def display_name(self, opt):
+        if opt == 1:
+            return self.__title + ' ' + self.__firstname + ' ' + self.__surname
+        if opt == 2:
+            return self.__surname + ' ' + self.__firstname
+
+
+class Staff:  # __ refers to private property
+    def __init__(self, id, t, fn, sn, s):
+        self.__staffid = id
+        self.__name = Name(t, fn, sn)
+        self._salary = s
+# containment: a class contains object of another class
+
+    def show(self):
+        print('StaffID:', self.__staffid)
+        catch = self.__name.display_name(1)
+        print('Name:', catch)
+        print('Salary:', self._salary)
+        print('Lunch Cost:', self.lunch_cost())
+
+    def lunch_cost(self):
+        return self._salary / 80
+
+
+class Teacher(Staff):
+    def __init__(self, id, t, fn, sn, s, fg, cr):
+        Staff.__init__(self, id, t, fn, sn, s)
+        self.__formgroup = fg
+        self.__classroom = cr
+
+    def show(self):
+        Staff.show(self)
+        print('Form Group:', self.__formgroup)
+        print('Classroom:', self.__classroom)
+
+    def lunch_cost(self):
+        return self._salary / 100
+
+
+class SupportStaff(Staff):
+    def __init__(self, id, t, fn, sn, s, pt, dep):
+        Staff.__init__(self, id, t, fn, sn, s)
+        self.__parttime = pt
+        self.__department = dep
+
+    def show(self):
+        Staff.show(self)
+        print('Part-Time:', self.__parttime)
+        print('Classroom:', self.__department)
+
+    def lunch_cost(self):
+        return self._salary / 120
+
+
+# Main Program
+
+x = Staff(1, 'Mr', 'Ibrahim', 'Asim', 45000)
+x.show()
+print('*************')
+y = Staff(2, 'Mr', 'Sami', 'Waseem', 45000)
+y.show()
+print('*************')
+z = Teacher(1, 'a', 'abdullah', 'khan', 45000, 'form', 'class 12')
+z.show()
+print('*************')
+a = SupportStaff(24, 'Xr', 'Rana', 'Taha', 45000, True, 'Bahrain Town')
+a.show()
+print('*************')
+n = Name('Mr', 'Ali', 'Ahmed')
+n.display_name(2)
