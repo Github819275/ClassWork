@@ -1,0 +1,39 @@
+class HiddenBox:
+    # DECLARE PRIVATE BoxName : STRING
+    # DECLARE PRIVATE Creator : STRING
+    # DECLARE PRIVATE DateHidden : DATE
+    # DECLARE PRIVATE GameLocation : STRING
+    # DECLARE PRIVATE LastFinds : ARRAY[1:10, 1:2] OF STRING
+    # DECLARE PRIVATE Active : BOOLEAN
+
+    def __init__(self, bn, cr, dh, gl):
+        self.__boxName = bn
+        self.__creator = cr
+        self.__dateHidden = dh
+        self.__gameLocation = gl
+        self.__active = False
+        self.__lastFinds = [['' for col in range(2)] for row in range(10)]
+
+    def GetBoxName(self):
+        return self.__boxName
+
+    def GetGameLocation(self):
+        return self.__gameLocation
+
+# Main Program
+def NewBox():
+    global index
+    Name = input('Enter name: ')
+    Creator = input('Enter Creator: ')
+    DateHidden = input('Enter date hidden: ')
+    GameLocation = input('Enter game location: ')
+    new = HiddenBox(Name, Creator, DateHidden, GameLocation)
+    TheBoxes[index] = new
+    index += 1
+
+
+index = 0
+TheBoxes = [HiddenBox('', '', '', '') for i in range(10000)]
+NewBox()
+print('Box name:', TheBoxes[0].GetBoxName())
+
