@@ -1,10 +1,10 @@
 class HiddenBox:
-    # DECLARE PRIVATE BoxName : STRING
-    # DECLARE PRIVATE Creator : STRING
-    # DECLARE PRIVATE DateHidden : DATE
-    # DECLARE PRIVATE GameLocation : STRING
-    # DECLARE PRIVATE LastFinds : ARRAY[1:10, 1:2] OF STRING
-    # DECLARE PRIVATE Active : BOOLEAN
+    # DECLARE PRIVATE boxName : STRING
+    # DECLARE PRIVATE creator : STRING
+    # DECLARE PRIVATE dateHidden : DATE
+    # DECLARE PRIVATE gameLocation : STRING
+    # DECLARE PRIVATE lastFinds : ARRAY[1:10, 1:2] OF STRING
+    # DECLARE PRIVATE active : BOOLEAN
 
     def __init__(self, bn, cr, dh, gl):
         self.__boxName = bn
@@ -19,6 +19,14 @@ class HiddenBox:
 
     def GetGameLocation(self):
         return self.__gameLocation
+
+
+class PuzzleBox(HiddenBox):
+    def __init__(self, bn, cr, dh, gl, pz, sl):
+        HiddenBox.__init__(self, bn, cr, dh, gl)
+        self.__puzzleText = ''     # DECLARE PRIVATE puzzleText : STRING
+        self.__solution = ''     # DECLARE PRIVATE solution : STRING
+
 
 # Main Program
 def NewBox():
