@@ -1,0 +1,58 @@
+class NodeClass:
+    def __init__(self):
+        self.__data = ''
+        self.__pointer = -1
+
+    def SetData(self, d):
+        self.__data = d
+
+    def SetPointer(self, x):
+        self.__pointer = x
+
+    def GetData(self):
+        return self.__data
+
+    def GetPointer(self):
+        return self.__pointer
+
+
+class QueueClass:
+    def __init__(self):
+        self.__queue = [NodeClass() for i in range(10)]
+        self.__head = -1
+        self.__tail = -1
+
+    def JoinQueue(self, NewItem):
+        Node = NodeClass()
+        Node.SetData(NewItem)
+        self.__tail = self.__tail + 1
+        self.__queue[self.__tail] = Node
+        if self.__head == -1:
+            self.__head = 0
+
+    def LeaveQueue(self):
+        self.__queue[self.__head] = ''
+        self.__head = self.__head + 1
+
+    def Show(self):
+        for j in range(10):
+            print(self.__queue[j].GetData())
+        print('HeadPointer:', self.__head)
+        print('TailPointer:', self.__tail)
+
+# MAIN PROGRAM
+
+
+n = NodeClass()
+n.SetData(10)
+n.SetPointer(20)
+q = QueueClass()
+q.JoinQueue('Multan')
+q.Show()
+
+
+
+
+
+
+
