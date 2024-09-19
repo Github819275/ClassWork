@@ -26,7 +26,8 @@ for i in range(1000):
     Books[i] = DummyRecord
 
 NewBook = BookRecord()
-for i in range(5):
+for i in range(2):
+    NewBook = BookRecord()
     NewBook.ISBN = input('Enter ISBN number: ')
     NewBook.Title = input('Enter Title: ')
     x = input('True or False: ')
@@ -35,8 +36,12 @@ for i in range(5):
     else:
         NewBook.OnLoan = False
     NewAddress = Hash(NewBook.ISBN)
+    while Books[NewAddress].ISBN != '0000000000':
+        NewAddress = NewAddress + 1
+        if NewAddress == 1000:
+            NewAddress = 0
     Books[NewAddress] = NewBook
 
 for i in range(1000):
     if Books[i].ISBN != '0000000000':
-        print(Books[i].ISBN)
+        print(f"ISBN Number: {Books[i].ISBN}, Title: {Books[i].Title}, OnLoan: {Books[i].OnLoan}")
