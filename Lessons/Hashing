@@ -1,0 +1,42 @@
+class BookRecord:
+    def __init__(self):
+        self.ISBN = ''
+        self.Title = ''
+        self.OnLoan = False
+
+def LeftToInt(ThisString, n):
+    if len(ThisString) < n:
+        return -1
+    for i in range(n):
+        if ThisString[i] < '0' or ThisString[i] > '9':
+            return -1
+    return int(ThisString[:n])
+
+
+def Hash(ISBN):
+    address = LeftToInt(ISBN, 3)
+    return address
+
+
+# MAIN PROGRAM
+Books = [BookRecord() for i in range(1000)]
+DummyRecord = BookRecord()
+DummyRecord.ISBN = '0000000000'
+for i in range(1000):
+    Books[i] = DummyRecord
+
+NewBook = BookRecord()
+for i in range(5):
+    NewBook.ISBN = input('Enter ISBN number: ')
+    NewBook.Title = input('Enter Title: ')
+    x = input('True or False: ')
+    if x == 'True':
+        NewBook.OnLoan = True
+    else:
+        NewBook.OnLoan = False
+    NewAddress = Hash(NewBook.ISBN)
+    Books[NewAddress] = NewBook
+
+for i in range(1000):
+    if Books[i].ISBN != '0000000000':
+        print(Books[i].ISBN)
