@@ -19,7 +19,7 @@ def Hash(ISBN):
 
 
 # MAIN PROGRAM
-size_array = 3
+size_array = 1000
 Books = [BookRecord() for i in range(size_array)]
 DummyRecord = BookRecord()
 DummyRecord.ISBN = '0000000000'
@@ -27,7 +27,7 @@ for i in range(size_array):
     Books[i] = DummyRecord
 
 NewBook = BookRecord()
-for i in range(4):
+for i in range(2):
     NewBook = BookRecord()
     NewBook.ISBN = input('Enter ISBN number: ')
     NewBook.Title = input('Enter Title: ')
@@ -41,6 +41,7 @@ for i in range(4):
     while Books[NewAddress].ISBN != '0000000000':
         NewAddress = NewAddress + 1
         print('NewAddress: ', NewAddress)
+        print('temp is,', temp)
         if NewAddress == size_array:
             NewAddress = 0
         if NewAddress == temp:
