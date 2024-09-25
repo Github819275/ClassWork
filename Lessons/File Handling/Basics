@@ -1,9 +1,7 @@
 file = open('my_file.txt', 'r')
 line = file.readline().strip()
-print(line)
-line = file.readline().strip()
-print(line)
-line = file.readline().strip()
-print(line)
+while len(line) > 0:
+    print(line)
+    line = file.readline().strip()
 
 file.close()
