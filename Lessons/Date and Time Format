@@ -1,0 +1,9 @@
+import datetime
+
+x = datetime.date(2001, 12, 30)
+print(x.weekday())
+print(x.day)
+print(x.month)
+print(x.year)
+print(x)
+
