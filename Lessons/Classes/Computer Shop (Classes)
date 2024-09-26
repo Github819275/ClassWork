@@ -1,0 +1,56 @@
+class Computer:
+    def __init__(self):
+        self.__code = ''
+        self.__width = 0.0
+        self.__height = 0.0
+        self.__weight = 0.0
+        self.__make = ''
+        self.__processor = ''
+        self.__ram = ''
+        self.__storage = ''
+
+    def set_computer(self, code, width, height, weight, make, processor, ram, storage):
+        self.__code = code
+        self.__width = width
+        self.__height = height
+        self.__weight = weight
+        self.__make = make
+        self.__processor = processor
+        self.__ram = ram
+        self.__storage = storage
+
+    def get_code(self):
+        return self.__code
+
+    def get_width(self):
+        return self.__width
+
+    def get_height(self):
+        return self.__height
+
+    def get_weight(self):
+        return self.__weight
+
+    def get_make(self):
+        return self.__make
+
+    def get_processor(self):
+        return self.__processor
+
+    def get_ram(self):
+        return self.__ram
+
+    def get_storage(self):
+        return self.__storage
+
+
+class MobilePhone(Computer):
+    def __init__(self):
+        Computer.__init__(self)
+        self.__camera = False
+        self.__g = False
+        self.__gg = False
+        self.__network = ''
+
+    def set_mobile(self, code, width, height, weight, make, processor, ram, storage, camera, g, gg, network):
+        Computer.set_computer(self, code, width, height, weight, make, processor, ram, storage)
