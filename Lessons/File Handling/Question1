@@ -1,0 +1,35 @@
+# file = open('q1.txt', 'w')
+# for i in range(5):
+#     line = input('Enter data: ____')
+#     file.write(line)
+#     file.write('\n')
+# file.close()
+#
+# file = open('q1.txt', 'r')
+# line = file.readline().strip()
+# while len(line) > 0:
+#     print(line)
+#     line = file.readline().strip()
+
+import datetime
+
+class Details:
+    def __init__(self):
+        self.name = ''
+        self.dob = ''
+
+
+details = Details()
+file = open('record.txt', 'w')
+details.name = input('Enter your name: ')
+while details.name != 'x':
+    temp = input('Enter you date of birth, (YYYY-MM-DD): ')
+    year = int(temp[:4])
+    month = int(temp[5:7])
+    day = int(temp[-2:])
+    details.dob = datetime.date(year, month, day)
+    file.write(details.name + '\n')
+    file.write(str(details.dob) + '\n')
+    details.name = input('Enter your name: ')
+
+file.close()
