@@ -1,0 +1,37 @@
+def enqueue(data):
+    global tail_pointer, head_pointer
+    if tail_pointer == 50:
+        print('Queue is full.')
+    else:
+        if head_pointer == -1:
+            head_pointer = 0
+        queue[tail_pointer] = data
+        tail_pointer = tail_pointer + 1
+
+
+def dequeue():
+    global head_pointer
+    if head_pointer == -1:
+        print('Queue is empty.')
+        return ''
+    else:
+        data = queue[head_pointer]
+        head_pointer = head_pointer + 1
+        return data
+
+
+def readData():
+    file = open('QueueData.txt', 'r')
+    a = file.readline().strip()
+    i = 0
+    while len(a) > 0:
+        queue[i] = a
+        i = i + 1
+        a = file.readline().strip()
+    file.close()
+
+
+queue = ['' for i in range(50)]
+head_pointer = -1
+tail_pointer = 0
+readData()
