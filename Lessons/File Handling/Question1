@@ -33,3 +33,30 @@ while details.name != 'x':
     details.name = input('Enter your name: ')
 
 file.close()
+
+file = open('record.txt', 'r')
+print('----------------------------------------')
+a = file.readline().strip()
+spaces = ''
+while len(a) > 0:
+    b = file.readline().strip()
+    spaces = ' ' * (20-len(a))
+    print(f"| {a}{spaces} |   {b}  |")
+    print('----------------------------------------')
+    a = file.readline().strip()
+file.close()
+
+
+file = open('record.txt', 'r')
+write_file = open('newfile.txt', 'w')
+delete_name = input('Enter name to be deleted: ')
+
+a = file.readline().strip()
+b = file.readline().strip()
+
+while len(a) > 0:
+    if a != delete_name:
+        write_file.write(a + '\n')
+        write_file.write(b + '\n')
+    a = file.readline().strip()
+    b = file.readline().strip()
