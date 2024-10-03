@@ -1,0 +1,11 @@
+line = [8, 7, 5, 6, 2, 6, 7, 1, 2, 3]
+status = True
+last = len(line) - 1
+while last > 0 and status:
+    for i in range(last):
+        status = False
+        if line[i] > line[i+1]:
+            line[i], line[i+1] = line[i+1], line[i]
+            status = True
+    last = last - 1
+print(line)
