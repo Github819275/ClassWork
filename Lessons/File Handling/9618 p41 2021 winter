@@ -38,10 +38,11 @@ def read_data():
         picture_array[count] = new_object
         count = count + 1
         file_desc = file.readline().strip()
+    return count
 
 
 picture_array = [Picture('', 0, 0, '') for i in range(100)]
-read_data()
+count1 = read_data()
 
 input_colour = input('Enter colour: ')
 input_wid = int(input('Enter width: '))
