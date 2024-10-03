@@ -48,7 +48,7 @@ input_wid = int(input('Enter width: '))
 input_hei = int(input('Enter height: '))
 
 for i in range(100):
-    if (picture_array[i].get_width() <= input_wid and picture_array[i].get_height() <= input_hei and
+    if (int(picture_array[i].get_width()) <= input_wid and int(picture_array[i].get_height()) <= input_hei and
             picture_array[i].get_frame_colour().lower() == input_colour.lower()):
         print(f"Picture description: {picture_array[i].get_description()}, Width: {picture_array[i].get_width()}, "
               f"Height: {picture_array[i].get_height()}")
