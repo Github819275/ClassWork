@@ -1,0 +1,14 @@
+def recursion(a, b):
+    total = 1
+    while a > 100:
+        if a > b:
+            total += 5
+            a -= 1
+        else:
+            total += 10
+            a -= 10
+
+    return total
+
+
+print(recursion(104, 102))
