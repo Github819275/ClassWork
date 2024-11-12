@@ -14,13 +14,14 @@ def IterativeUnknown(x, y):
     while x != y:
         if x < y:
             print(x + y)
-            answer = (x + 1) * 2
+            x = x + 1
+            answer = answer * 2
             x = x + 1
         else:
             print(x + y)
-            answer = (x - 1) * 2
             x = x - 1
-    print(answer)
+            answer = answer // 2
+    return answer
 
 
 # Main Program
