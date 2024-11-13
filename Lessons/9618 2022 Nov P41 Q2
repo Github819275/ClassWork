@@ -1,0 +1,70 @@
+class Card:
+    def __init__(self, num, col):
+        self.__number = num  # PRIVATE number : INTEGER
+        self.__colour = col  # PRIVATE col : STRING
+
+    def GetNumber(self):
+        return self.__number
+
+    def GetColour(self):
+        return self.__colour
+
+
+class Hand:
+    def __init__(self, c1, c2, c3, c4, c5):
+        self.__cards = [Card(0, '') for i in range(5)]  # PRIVATE cards[0:] : INTEGER
+        self.__cards[0] = c1
+        self.__cards[1] = c2
+        self.__cards[2] = c3
+        self.__cards[3] = c4
+        self.__cards[4] = c5
+        self.__first_card = 0  # PRIVATE first_card : INTEGER
+        self.__number_of_cards = 5  # PRIVATE number_of_cards : INTEGER
+
+    def GetCard(self, index):
+        return self.__cards[index]
+
+
+def CalculateValue(player):
+    score = 0
+    for i in range(5):
+        if player.GetCard(i).GetColour() == 'red':
+            score = score + 5
+        elif player.GetCard(i).GetColour() == 'blue':
+            score = score + 10
+        else:
+            score = score + 15
+        score = player.GetCard(i).GetNumber() + score
+    return score
+
+
+# Main Program
+r1 = Card(1, 'red')
+r2 = Card(2, 'red')
+r3 = Card(3, 'red')
+r4 = Card(4, 'red')
+r5 = Card(5, 'red')
+b1 = Card(1, 'blue')
+b2 = Card(2, 'blue')
+b3 = Card(3, 'blue')
+b4 = Card(4, 'blue')
+b5 = Card(5, 'blue')
+y1 = Card(1, 'yellow')
+y2 = Card(2, 'yellow')
+y3 = Card(3, 'yellow')
+y4 = Card(4, 'yellow')
+y5 = Card(5, 'yellow')
+
+player1 = Hand(r1, r2, r3, r4, y1)
+player2 = Hand(y2, y3, y4, y5, b1)
+
+
+result1 = CalculateValue(player1)
+result2 = CalculateValue(player2)
+print(result1, result2)
+if result1 > result2:
+    print('Player 1 wins')
+elif result2 > result1:
+    print('Player 2 wins')
+else:
+    print('It was a draw')
