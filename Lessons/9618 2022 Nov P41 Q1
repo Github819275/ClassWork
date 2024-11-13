@@ -1,0 +1,41 @@
+DataArray = [0 for i in range(100)]
+
+
+def ReadFile():
+    try:
+        file = open('IntegerData.txt', 'r')
+        integer = file.readline().strip()
+        index = 0
+        while len(integer) > 0:
+            DataArray[index] = int(integer)
+            integer = file.readline().strip()
+            index = index + 1
+    except:
+        print('File does not exist.')
+
+
+def FindValues():
+    user_input = int(input('Enter a value between 1 and 100: '))
+    while user_input < 1 or user_input > 100:
+        print('Out of range, re-enter')
+        user_input = int(input('Enter a value between 1 and 100: '))
+    count = 0
+    for i in range(100):
+        if DataArray[i] == user_input:
+            count = count + 1
+    return count
+
+
+def BubbleSort():
+    for i in range(100):
+        for j in range(99):
+            if DataArray[j] > DataArray[j+1]:
+                DataArray[j], DataArray[j + 1] = DataArray[j + 1], DataArray[j]
+    print(DataArray)
+
+
+# Main Program
+ReadFile()
+result = FindValues()
+print('Number of times repeated:', result)
+BubbleSort()
