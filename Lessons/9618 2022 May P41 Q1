@@ -1,0 +1,55 @@
+class PlayerInfo:
+    def __init__(self, n, s):
+        self.name = n
+        self.score = s
+
+
+def read_highscore():
+    file = open('HighScore.txt', 'r')
+    player_name = file.readline().strip()
+    index = 0
+    while len(player_name) > 0:
+        player_score = int(file.readline().strip())
+        players[index] = PlayerInfo(player_name, player_score)
+        player_name = file.readline().strip()
+        index = index + 1
+
+
+def output_highscores():
+    for i in range(10):
+        print(f"{players[i].name} {players[i].score}")
+
+
+def new_list(n, s):
+    players[10].name = n
+    players[10].score = s
+    for i in range(11):
+        for j in range(10):
+            if players[j].score < players[j+1].score:
+                players[j].name, players[j + 1].name = players[j + 1].name, players[j].name
+                players[j].score, players[j+1].score = players[j+1].score, players[j].score
+
+
+def write_top_ten():
+    file = open('NewHighScore.txt', 'w')
+    for i in range(10):
+        file.write(players[i].name + '\n')
+        file.write(str(players[i].score) + '\n')
+    file.close()
+
+
+# Main Program
+players = [PlayerInfo('', 0) for i in range(11)]
+read_highscore()
+output_highscores()
+new_name = input('Enter 3-digit player name: ')
+new_score = int(input('Enter an integer score between 1-100000: '))
+
+while len(new_name) != 3 or (new_score < 1 or new_score > 100000):
+    print('Re-enter values')
+    new_name = input('Enter 3-digit player name: ')
+    new_score = int(input('Enter an integer score between 1-100000: '))
+
+new_list(new_name, new_score)
+output_highscores()
+write_top_ten()
