@@ -12,7 +12,7 @@ class Card:
 
 class Hand:
     def __init__(self, c1, c2, c3, c4, c5):
-        self.__cards = [Card(0, '') for i in range(5)]  # PRIVATE cards[0:] : INTEGER
+        self.__cards = [Card(0, '') for i in range(5)]  # PRIVATE cards[0:9] : INTEGER
         self.__cards[0] = c1
         self.__cards[1] = c2
         self.__cards[2] = c3
