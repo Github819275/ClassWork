@@ -1,0 +1,38 @@
+Queue = [0 for i in range(100)]
+HeadPointer = -1
+TailPointer = 0
+
+
+def Enqueue(num):
+    global TailPointer, HeadPointer
+    if TailPointer > 99:
+        return False
+    else:
+        Queue[TailPointer] = num
+        TailPointer = TailPointer + 1
+        if HeadPointer == -1:
+            HeadPointer = 0
+        return True
+
+
+def RecursiveOutput(Start):
+    total = 0
+    if Start == 0:
+        return Queue[Start]
+    else:
+        return Queue[Start] + RecursiveOutput(Start - 1)
+
+
+# Main Program
+flag = True
+for i in range(1, 21):
+    flag = Enqueue(i)
+    if not flag:
+        break
+if flag:
+    print('Successful')
+else:
+    print('Unsuccessful')
+
+total = RecursiveOutput(TailPointer - 1)
+print(total)
