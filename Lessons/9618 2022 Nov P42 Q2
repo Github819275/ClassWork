@@ -1,0 +1,60 @@
+class Character:
+    def __init__(self, n, x, y):
+        self.__name = n  # PRIVATE name : STRING
+        self.__XCoordinate = x  # PRIVATE XCoordinate : INTEGER
+        self.__YCoordinate = y  # PRIVATE XCoordinate : INTEGER
+
+    def GetName(self):
+        return self.__name
+
+    def GetX(self):
+        return self.__XCoordinate
+
+    def GetY(self):
+        return self.__YCoordinate
+
+    def ChangePosition(self, x, y):
+        self.__XCoordinate += x
+        self.__YCoordinate += y
+
+
+# Main Program
+array = [Character(' ',0,0)for i in range(10)]
+file =open('Characters.txt','r')
+name=file.readline().strip()
+index =0
+while len(name) > 0 :
+
+    xcord=int(file.readline().strip())
+    ycord=int(file.readline().strip())
+    index = index + 1
+file.close()
+
+
+
+hafi = False
+while hafi == False:
+    namex = input('enter name to be found')
+    for x in range(10):
+        if array[x].getname().lower() == namex.lower():
+            store = x
+            hafi = True
+
+isvalid = False
+while isvalid != True:
+    letter = input('enter letter')
+    if letter == 'A':
+        array[store].changeposition(-1,0)
+        isvalid = True
+    elif letter == 'W':
+        array[store].changeposition(0,1)
+        isvalid = True
+    elif letter == 'S':
+        array[store].changeposition(0,-1)
+        isvalid = True
+    elif letter == 'D':
+        array[store].changeposition(1,0)
+        isvalid = True
+
+
+print(array[store].getname(),'hass changed coordinates to x = ',array[store].getx(),'and y = ',array[store].gety())
