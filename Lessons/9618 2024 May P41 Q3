@@ -1,0 +1,59 @@
+QueueData = ["" for i in range(20)]
+QueueHead = -1
+QueueTail = -1
+
+
+def Enqueue(data):
+    global QueueHead, QueueTail
+    if QueueTail == 19:
+        return False
+    else:
+        QueueTail = QueueTail + 1
+        QueueData[QueueTail] = data
+        if QueueHead == -1:
+            QueueHead = 0
+        return True
+
+
+def Dequeue():
+    global QueueHead, QueueTail
+    if QueueHead == -1 or QueueHead > QueueTail:
+        return "false"
+    else:
+        value = QueueData[QueueHead]
+        QueueHead += 1
+        return value
+
+
+def StoreItems():
+    count = 0
+    for i in range(10):
+        user_input = input('Enter 7 digit string: ')
+        zero = int(user_input[0])
+        one = int(user_input[1])
+        two = int(user_input[2])
+        three = int(user_input[3])
+        four = int(user_input[4])
+        five = int(user_input[5])
+        six = user_input[6]
+        check = ((zero + two + four) + 3 * (one + three + five)) // 10
+        if check == 10:
+            check = 'X'
+        if str(check) == str(six):
+            status = Enqueue(user_input[:6])
+            if status:
+                print('Successfully added.')
+            else:
+                print('Not added. Queue is full.')
+        else:
+            count = count + 1
+    print('Number of invalid strings:', count)
+
+
+# Main Program
+StoreItems()
+status = Dequeue()
+if status == "false":
+    print('Queue is empty')
+else:
+    print('Value is', status)
