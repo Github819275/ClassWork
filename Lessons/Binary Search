@@ -10,9 +10,9 @@ while not found and lower <= upper:
         found = True
         print('Found at index:', mid)
     elif x > arr[mid]:
-        lower = lower + 1
+        lower = mid + 1
     else:
-        upper = upper - 1
+        upper = mid - 1
 
 if not found:
     print('Not Found')
