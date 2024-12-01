@@ -1,0 +1,50 @@
+DataStored = []
+NumberItems = 0
+
+
+def Initialise():
+    number = int(input('How many numbers would you like to enter? '))
+    while number > 20 or number < 1:
+        print('Re-enter')
+        number = int(input('How many numbers would you like to enter? '))
+    for i in range(number):
+        DataStored.append(int(input('Enter number: ')))
+
+
+def BubbleSort():
+    last = len(DataStored) - 1
+    status = True
+    while last > 0 and status:
+        for i in range(last):
+            status = False
+            if DataStored[i] > DataStored[i + 1]:
+                DataStored[i], DataStored[i + 1] = DataStored[i + 1], DataStored[i]
+                status = True
+        last = last -1
+
+
+def BinarySearch(DataToFind):
+    index = -1
+    found = False
+    lower = 0
+    upper = len(DataStored) - 1
+    while not found and lower <= upper:
+        mid = (upper + lower) // 2
+        if DataStored[mid] == DataToFind:
+            found = True
+            index = mid
+        elif DataToFind > DataStored[mid]:
+            lower = mid + 1
+        else:
+            upper = mid - 1
+        return index
+
+
+# Main Program
+NumberItems = 0
+Initialise()
+BubbleSort()
+print(DataStored)
+user_input = int(input('Enter number to find: '))
+index = BinarySearch(user_input)
+print(index)
