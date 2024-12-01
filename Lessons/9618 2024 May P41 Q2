@@ -1,0 +1,85 @@
+class Tree:
+    def __init__(self, tn, gr, mh, mw, eg):
+        self.__tree_name = tn
+        self.__height_growth = gr
+        self.__max_height = mh
+        self.__max_width = mw
+        self.__evergreen = eg
+
+    def get_tree_name(self):
+        return self.__tree_name
+
+    def get_growth(self):
+        return self.__height_growth
+
+    def get_max_height(self):
+        return self.__max_height
+
+    def get_max_width(self):
+        return self.__max_width
+
+    def get_evergreen(self):
+        return self.__evergreen
+
+
+def read_data():
+    trees = []
+    try:
+        file = open("Trees.txt", 'r')
+        line = file.readline().strip()
+        while len(line) > 0:
+            commas = []
+            for i in range(len(line)):
+                if line[i] == ',':
+                    commas.append(i)
+
+            tree_name = line[:commas[0]]
+            height_growth = int(line[commas[0]+1:commas[1]])
+            max_height = int(line[commas[1]+1:commas[2]])
+            max_width = int(line[commas[2]+1:commas[3]])
+            evergreen = line[commas[3]+1:]
+            obj = Tree(tree_name, height_growth, max_height, max_width, evergreen)
+            trees.append(obj)
+
+            line = file.readline().strip()
+        return trees
+    except FileNotFoundError:
+        print('File not found')
+
+
+def print_trees(tree_object: Tree):
+    if tree_object.get_evergreen() == 'Yes':
+        print(f"{tree_object.get_tree_name()} has a maximum height {tree_object.get_max_height()} a "
+              f"maximum width {tree_object.get_max_width()} and grows {tree_object.get_growth()} "
+              f"cm a year. It does not lose its leaves.")
+    else:
+        print(f"{tree_object.get_tree_name()} has a maximum height {tree_object.get_max_height()} a "
+              f"maximum width {tree_object.get_max_width()} and grows {tree_object.get_growth()} "
+              f"cm a year. It loses its leaves each year.")
+
+
+def choose_tree(tree_array):
+    user_height = int(input('Maximum height? '))
+    user_width = int(input('Maximum width? '))
+    user_choice = input('Evergreen tree or not? (Yes/No) ')
+    user_trees = []
+    for i in range(9):
+        if (tree_array[i].get_max_height() <= user_height and tree_array[i].get_max_width() <= user_width
+                and trees_array[i].get_evergreen().lower() == user_choice.lower()):
+            user_trees.append(trees_array[i])
+            print_trees(trees_array[i])
+    if len(user_trees) == 0:
+        print('No such trees found')
+    user_buy = input('Which tree would you like to buy? ')
+    current_height = int(input('Current height of tree? '))
+    for i in range(len(user_trees)):
+        if user_trees[i].get_tree_name().lower() == user_buy.lower():
+            years = (user_trees[i].get_max_height() - current_height) / user_trees[i].get_growth()
+            print('It will take', str(years), 'to reach its maximum height of', user_trees[i].get_max_height())
+            break
+
+
+# Main Program
+trees_array = read_data()
+print_trees(trees_array[0])
+choose_tree(trees_array)
