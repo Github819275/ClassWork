@@ -1,0 +1,87 @@
+Animal = ['' for i in range(20)]
+Colour = ['' for i in range(10)]
+AnimalTopPointer = 0
+ColourTopPointer = 0
+
+
+def PushAnimal(DataToPush):
+    global AnimalTopPointer
+    if AnimalTopPointer == 20:
+        return False
+    else:
+        Animal[AnimalTopPointer] = DataToPush
+        AnimalTopPointer += 1
+        return True
+
+
+def PushColour(DataToPush):
+    global ColourTopPointer
+    if ColourTopPointer == 20:
+        return False
+    else:
+        Colour[ColourTopPointer] = DataToPush
+        ColourTopPointer += 1
+        return True
+
+
+def PopAnimal():
+    global AnimalTopPointer
+    if AnimalTopPointer == 0:
+        return ""
+    else:
+        ReturnData = Animal[AnimalTopPointer - 1]
+        AnimalTopPointer -= 1
+        return ReturnData
+
+
+def PopColour():
+    global ColourTopPointer
+    if ColourTopPointer == 0:
+        return ""
+    else:
+        ReturnData = Colour[ColourTopPointer - 1]
+        ColourTopPointer -= 1
+        return ReturnData
+
+
+def ReadData():
+    try:
+        file = open("AnimalData.txt", 'r')
+        line = file.readline().strip()
+        while len(line) > 0:
+            status = PushAnimal(line)
+            line = file.readline().strip()
+        file.close()
+    except:
+        print('No such file found.')
+
+    try:
+        file = open("ColourData.txt", 'r')
+        line = file.readline().strip()
+        while len(line) > 0:
+            status = PushColour(line)
+            line = file.readline().strip()
+        file.close()
+    except:
+        print('No such file found.')
+
+
+def OutputItem():
+    animal = PopAnimal()
+    colour = PopColour()
+    if animal != '' and colour != '':
+        print(f"{colour} {animal}")
+    elif animal != '' and colour == '':
+        status = PushAnimal(animal)
+        print('No colour')
+    elif animal == '' and colour != '':
+        status2 = PushColour(colour)
+        print('No animal')
+
+
+# Main Program
+ReadData()
+OutputItem()
+OutputItem()
+OutputItem()
+OutputItem()
