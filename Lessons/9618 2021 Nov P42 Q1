@@ -16,7 +16,6 @@ def IterativeUnknown(x, y):
             print(x + y)
             x = x + 1
             answer = answer * 2
-            x = x + 1
         else:
             print(x + y)
             x = x - 1
