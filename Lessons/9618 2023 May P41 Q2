@@ -1,0 +1,70 @@
+class Vehicle:
+    def __init__(self, id, ms, ia):
+        self.__ID = id  # DECLARE PRIVATE ID : STRING
+        self.__MaxSpeed = ms  # DECLARE PRIVATE MaxSpeed : INTEGER
+        self.__IncreaseAmount = ia  # DECLARE PRIVATE IncreaseAmount : INTEGER
+        self.__CurrentSpeed = 0  # DECLARE PRIVATE CurrentSpeed : INTEGER
+        self.__HorizontalPosition = 0  # DECLARE PRIVATE HorizontalPosition : INTEGER
+
+    def GetCurrentSpeed(self):
+        return self.__CurrentSpeed
+
+    def GetIncreaseAmount(self):
+        return self.__IncreaseAmount
+
+    def GetMaxSpeed(self):
+        return self.__MaxSpeed
+
+    def GetHorizontalPosition(self):
+        return self.__HorizontalPosition
+
+    def SetCurrentSpeed(self, value):
+        self.__CurrentSpeed = value
+
+    def SetHorizontalPosition(self, value):
+        self.__HorizontalPosition = value
+
+    def IncreaseSpeed(self):
+        self.__CurrentSpeed = self.__CurrentSpeed + self.__IncreaseAmount
+        if self.__CurrentSpeed > self.__MaxSpeed:
+            self.__CurrentSpeed = self.__MaxSpeed
+        self.__HorizontalPosition = self.__HorizontalPosition + self.__CurrentSpeed
+
+    def output(self):
+        print("Horizontal Position:", self.GetHorizontalPosition())
+        print('Speed of vehicle:', self.GetCurrentSpeed())
+
+
+class Helicopter(Vehicle):
+    def __init__(self, id, ms, ia, vc, mh):
+        Vehicle.__init__(self, id, ms, ia)
+        self.__VerticalChange = vc  # DECLARE PRIVATE VerticalChange : INTEGER
+        self.__MaximumHeight = mh  # DECLARE PRIVATE MaximumHeight : INTEGER
+        self.__VerticalPosition = 0  # DECLARE PRIVATE VerticalPosition : INTEGER
+
+    def IncreaseSpeed(self):
+        self.__VerticalPosition = self.__VerticalPosition + self.__VerticalChange
+        if self.__VerticalPosition > self.__MaximumHeight:
+            self.__VerticalPosition = self.__MaximumHeight
+        self.SetCurrentSpeed(self.GetCurrentSpeed() + self.GetIncreaseAmount())
+        if self.GetCurrentSpeed() > self.GetMaxSpeed():
+            self.SetCurrentSpeed(self.GetMaxSpeed())
+        self.SetHorizontalPosition(self.GetHorizontalPosition() + self.GetCurrentSpeed())
+
+    def output(self):
+        print("Horizontal Position:", self.GetHorizontalPosition())
+        print('Speed of vehicle:', self.GetCurrentSpeed())
+        print('Vertical Position:', self.__VerticalPosition)
+
+
+# Main Program
+car = Vehicle('Tiger', 100, 20)
+helicopter = Helicopter('Lion', 350, 40, 3, 100)
+car.IncreaseSpeed()
+car.IncreaseSpeed()
+car.output()
+helicopter.IncreaseSpeed()
+helicopter.IncreaseSpeed()
+helicopter.output()
+
+
