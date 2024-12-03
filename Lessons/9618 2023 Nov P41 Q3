@@ -1,0 +1,64 @@
+class Character:
+    def __init__(self, n, x, y):
+        self.__Name = n  # DECLARE PRIVATE Name : STRING
+        self.__XPosition = x  # DECLARE PRIVATE XPosition : INTEGER
+        self.__YPosition = y  # DECLARE PRIVATE YPosition : INTEGER
+
+    def GetXPosition(self):
+        return self.__XPosition
+
+    def GetYPosition(self):
+        return self.__YPosition
+
+    def SetXPosition(self, value):
+        self.__XPosition = value + self.__XPosition
+        if self.__XPosition > 10000:
+            self.__XPosition = 10000
+        elif self.__XPosition < 0:
+            self.__XPosition = 0
+
+
+    def SetYPosition(self, value):
+        self.__YPosition = value + self.__YPosition
+        if self.__YPosition > 10000:
+            self.__YPosition = 10000
+        elif self.__YPosition < 0:
+            self.__YPosition = 0
+
+    def Move(self, direction):
+        if direction == 'up':
+            self.SetYPosition(10)
+        elif direction == 'down':
+            self.SetYPosition(-10)
+        elif direction == 'left':
+            self.SetXPosition(-10)
+        elif direction == 'right':
+            self.SetXPosition(10)
+
+
+class BikeCharacter(Character):
+    def __init__(self, n, x, y):
+        Character.__init__(self, n, x, y)
+
+    def Move(self, direction):
+        if direction == 'up':
+            self.SetYPosition(20)
+        elif direction == 'down':
+            self.SetYPosition(-20)
+        elif direction == 'left':
+            self.SetXPosition(-20)
+        elif direction == 'right':
+            self.SetXPosition(20)
+
+
+# Main Program
+Jack = Character('Jack', 50, 50)
+Karla = BikeCharacter('Karla', 100, 50)
+user_input = input('Which character would you like to move: ')
+user_direction = input('Which direction would you like to move: ')
+if user_input.lower() == 'jack':
+    Jack.Move(user_direction)
+    print(f"Jack's new position is X = {Jack.GetXPosition()}  Y = {Jack.GetYPosition()}")
+else:
+    Karla.Move(user_direction)
+    print(f"Karla's new position is X = {Karla.GetXPosition()}  Y = {Karla.GetYPosition()}")
