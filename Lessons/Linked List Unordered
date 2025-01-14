@@ -1,0 +1,59 @@
+class Node:    # FreePointer starts at 1, 0 as Null Pointer because array does not have -1 as index
+    def __init__(self):
+        self.data = ''
+        self.pointer = 0
+
+
+linkedlist = [Node() for i in range(10)]  # global array
+freePointer = 1  # global pointers
+startPointer = 0
+
+
+def display():
+    print('FreePointer', freePointer, 'StartPointer', startPointer)
+    print('')
+    print('Index', '     ', 'Data', '    ', 'Pointer')
+    for i in range(1, 10):
+        print(i, '          ', linkedlist[i].data, '          ', linkedlist[i].pointer)
+
+
+def initialise():
+    for i in range(1, 9):
+        linkedlist[i].pointer = i + 1
+
+
+def insert():
+    global freePointer, startPointer
+    if freePointer != 0:
+        item = input('Enter data: ')
+        linkedlist[freePointer].data = item
+        new_node = freePointer
+        freePointer = linkedlist[freePointer].pointer
+
+        linkedlist[new_node].pointer = startPointer
+        startPointer = new_node
+    else:
+        print('List is full.')
+
+
+def print_list():
+    print('***************')
+    current_pointer = startPointer
+    while current_pointer != 0:
+        print(linkedlist[current_pointer].data)
+        current_pointer = linkedlist[current_pointer].pointer
+    print('***************')
+
+
+# Main program
+initialise()
+display()
+insert()
+display()
+insert()
+display()
+insert()
+display()
+insert()
+display()
+print_list()
