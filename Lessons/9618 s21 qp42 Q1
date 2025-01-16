@@ -1,0 +1,74 @@
+class Node:
+    def __init__(self):
+        self.data = 0
+        self.nextNode = -1
+
+
+startPointer = 0
+emptyList = 5
+
+linkedList = [Node() for i in range(10)]
+linkedList[0].data = 1
+linkedList[0].nextNode = 1
+linkedList[1].data = 5
+linkedList[1].nextNode = 4
+
+linkedList[2].data = 6
+linkedList[2].nextNode = 7
+linkedList[3].data = 7
+linkedList[3].nextNode = -1
+linkedList[4].data = 2
+linkedList[4].nextNode = 2
+linkedList[5].data = 0
+linkedList[5].nextNode = 6
+
+linkedList[6].data = 0
+linkedList[6].nextNode = 8
+linkedList[7].data = 56
+linkedList[7].nextNode = 3
+linkedList[8].data = 0
+linkedList[8].nextNode = 9
+linkedList[9].data = 0
+linkedList[9].nextNode = -1
+
+
+def output_nodes(link, start):
+    print('****')
+    while start != -1:
+        print(link[start].data)
+        start = link[start].nextNode
+    print('****')
+
+
+def add_node(link, start, empty):
+    input_data = int(input('Enter value to insert: '))
+    if empty == -1:
+        return False, -1
+    else:
+        current_pointer = start
+        while current_pointer != -1:
+            previous_pointer = current_pointer
+            current_pointer = link[current_pointer].nextNode
+        
+        temp = link[empty].nextNode
+        link[previous_pointer].nextNode = empty
+        link[empty].data = input_data
+        link[empty].nextNode = -1
+        empty = temp
+        return True, empty
+
+
+# Main Program
+output_nodes(linkedList, startPointer)
+status, emptyList = add_node(linkedList, startPointer, emptyList)
+status, emptyList = add_node(linkedList, startPointer, emptyList)
+print('aaa', emptyList)
+if status:
+    print('Added')
+
+else:
+    print('Not added')
+output_nodes(linkedList, startPointer)
+
+for i in range(10):
+    print('index', i, 'data', linkedList[i].data, 'points', linkedList[i].nextNode)
