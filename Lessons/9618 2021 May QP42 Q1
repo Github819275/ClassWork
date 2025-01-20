@@ -43,19 +43,22 @@ def output_nodes(link, start):
 def add_node(link, start, empty):
     input_data = int(input('Enter value to insert: '))
     if empty == -1:
-        return False, -1
+        return False, empty
     else:
-        current_pointer = start
-        while current_pointer != -1:
-            previous_pointer = current_pointer
-            current_pointer = link[current_pointer].nextNode
-        
-        temp = link[empty].nextNode
-        link[previous_pointer].nextNode = empty
-        link[empty].data = input_data
-        link[empty].nextNode = -1
-        empty = temp
-        return True, empty
+        if empty == -1:
+            return False
+        else:
+            link[empty].data = input_data
+            new_node = empty
+            empty = link[empty].nextNode
+            current_pointer = start
+            previous_pointer = 0
+            while current_pointer != -1:
+                previous_pointer = current_pointer
+                current_pointer = link[current_pointer].nextNode
+            link[previous_pointer].nextNode = new_node
+            link[new_node].nextNode = -1
+            return True, empty
 
 
 # Main Program
@@ -72,3 +75,4 @@ output_nodes(linkedList, startPointer)
 
 for i in range(10):
     print('index', i, 'data', linkedList[i].data, 'points', linkedList[i].nextNode)
+    
