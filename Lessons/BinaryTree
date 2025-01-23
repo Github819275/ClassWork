@@ -1,0 +1,62 @@
+class Node:
+    def __init__(self):
+        self.left_pointer = -1
+        self.data = ''
+        self.right_pointer = -1
+
+
+binary_tree = [Node() for i in range(10)]
+rootPointer = -1
+freePointer = 0
+
+
+def display():
+    print('Root: ', rootPointer, '  FreePointer: ', freePointer)
+    print('Index', 'LeftPointer', 'Data', 'RightPointer')
+    for i in range(10):
+        print(i, '     ', binary_tree[i].left_pointer, '      ', binary_tree[i].data, '             ', binary_tree[i].right_pointer)
+
+
+def initialise():
+    for i in range(10):
+        binary_tree[i].left_pointer = i + 1
+    binary_tree[9].left_pointer = -1
+
+
+def insert():
+    global freePointer, rootPointer
+    if freePointer == -1:
+        print('Binary Tree is full.')
+    else:
+        item = input('Please enter value: ')
+        binary_tree[freePointer].data = item
+        new_node = freePointer
+        freePointer = binary_tree[freePointer].left_pointer
+        binary_tree[new_node].left_pointer = -1
+        if rootPointer == -1:
+            rootPointer = 0
+        else:
+            current_pointer = rootPointer
+            while current_pointer != -1:
+                previous_pointer = current_pointer
+                if item < binary_tree[current_pointer].data:
+                    move = 'left'
+                    current_pointer = binary_tree[current_pointer].left_pointer
+                else:
+                    move = 'right'
+                    current_pointer = binary_tree[current_pointer].right_pointer
+            if move == 'left':
+                binary_tree[previous_pointer].left_pointer = new_node
+            else:
+                binary_tree[previous_pointer].right_pointer = new_node
+
+
+initialise()
+display()
+insert()
+insert()
+insert()
+insert()
+insert()
+insert()
+display()
