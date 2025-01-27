@@ -51,6 +51,40 @@ def insert():
                 binary_tree[previous_pointer].right_pointer = new_node
 
 
+def search(data):
+    current_pointer = rootPointer
+    while current_pointer != -1 and data != binary_tree[current_pointer].data:
+        if data > binary_tree[current_pointer].data:
+            current_pointer = binary_tree[current_pointer].right_pointer
+        else:
+            current_pointer = binary_tree[current_pointer].left_pointer
+    if current_pointer == -1:
+        print('Data not found!')
+    else:
+        print('Data found at', current_pointer)
+
+
+def print_preorder(rootPtr):
+    if rootPtr != -1:
+        print(binary_tree[rootPtr].data)
+        print_preorder(binary_tree[rootPtr].left_pointer)
+        print_preorder(binary_tree[rootPtr].right_pointer)
+
+
+def print_inorder(rootPtr):
+    if rootPtr != -1:
+        print_preorder(binary_tree[rootPtr].left_pointer)
+        print(binary_tree[rootPtr].data)
+        print_preorder(binary_tree[rootPtr].right_pointer)
+
+
+def print_postorder(rootPtr):
+    if rootPtr != -1:
+        print_preorder(binary_tree[rootPtr].left_pointer)
+        print_preorder(binary_tree[rootPtr].right_pointer)
+        print(binary_tree[rootPtr].data)
+
+
 initialise()
 display()
 insert()
@@ -60,3 +94,13 @@ insert()
 insert()
 insert()
 display()
+
+print_preorder(rootPointer)
+print('')
+print('*')
+print('')
+print_inorder(rootPointer)
+print('')
+print('*')
+print('')
+print_postorder(rootPointer)
