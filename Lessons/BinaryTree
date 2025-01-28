@@ -66,23 +66,23 @@ def search(data):
 
 def print_preorder(rootPtr):
     if rootPtr != -1:
-        print(binary_tree[rootPtr].data)
+        print(binary_tree[rootPtr].data, end=',')
         print_preorder(binary_tree[rootPtr].left_pointer)
         print_preorder(binary_tree[rootPtr].right_pointer)
 
 
 def print_inorder(rootPtr):
     if rootPtr != -1:
-        print_preorder(binary_tree[rootPtr].left_pointer)
-        print(binary_tree[rootPtr].data)
-        print_preorder(binary_tree[rootPtr].right_pointer)
+        print_inorder(binary_tree[rootPtr].left_pointer)
+        print(binary_tree[rootPtr].data, end=',')
+        print_inorder(binary_tree[rootPtr].right_pointer)
 
 
 def print_postorder(rootPtr):
     if rootPtr != -1:
-        print_preorder(binary_tree[rootPtr].left_pointer)
-        print_preorder(binary_tree[rootPtr].right_pointer)
-        print(binary_tree[rootPtr].data)
+        print_postorder(binary_tree[rootPtr].left_pointer)
+        print_postorder(binary_tree[rootPtr].right_pointer)
+        print(binary_tree[rootPtr].data, end=',')
 
 
 initialise()
@@ -91,16 +91,13 @@ insert()
 insert()
 insert()
 insert()
-insert()
-insert()
 display()
 
+print('Preorder')
 print_preorder(rootPointer)
 print('')
-print('*')
-print('')
+print('Inorder')
 print_inorder(rootPointer)
 print('')
-print('*')
-print('')
+print('Postorder')
 print_postorder(rootPointer)
