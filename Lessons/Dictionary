@@ -1,0 +1,26 @@
+Dictionary = [['', ''] for i in range(10)]
+
+
+def Hash(key):
+    return ord(key[0].upper()) - 64
+
+
+def Add(key, value):
+    index = Hash(key)
+    while Dictionary[index][0] != '':
+        index += 1
+        if index == 10:
+            index = 0
+    Dictionary[index][0] = key
+    Dictionary[index][1] = value
+
+
+Add('File', 'Desk')
+Add('Disk', 'Platte')
+Add('Error', 'Fehler')
+Add('Computer', 'Rechner')
+Add('Dog', 'Hund')
+
+for row in range(10):
+    print(Dictionary[row])
+    
