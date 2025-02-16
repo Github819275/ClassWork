@@ -1,0 +1,86 @@
+class EventItem:
+    def __init__(self, en, t, d):
+        self.__EventName = en  # PRIVATE EventName : String
+        self.__Type = t  # PRIVATE Type : STRING
+        self.__Difficulty = d  # PRIVATE Difficulty : INTEGER
+
+    def GetName(self):
+        return self.__EventName
+
+    def GetEventType(self):
+        return self.__Type
+
+    def GetDifficulty(self):
+        return self.__Difficulty
+
+
+class Character:
+    def __init__(self, cn, j, s, r, d,):
+        self.__CharacterName = cn  # PRIVATE CharacterName : STRING
+        self.__Jump = j  # PRIVATE Jump : INTEGER
+        self.__Swim = s  # PRIVATE Swim : INTEGER
+        self.__Run = r  # PRIVATE Run : INTEGER
+        self.__Drive = d  # PRIVATE Drive : INTEGER
+
+    def GetName(self):
+        return self.__CharacterName
+
+    def CalculateScore(self, event_type, difficulty):
+        if event_type.lower() == 'jump':
+            skill_value = self.__Jump
+        elif event_type.lower() == 'swim':
+            skill_value = self.__Swim
+        elif event_type.lower() == 'run':
+            skill_value = self.__Run
+        elif event_type.lower() == 'drive':
+            skill_value = self.__Drive
+
+        if skill_value >= difficulty:
+            return 100
+        difference = difficulty - skill_value
+        if difference == 1:
+            return 80
+        elif difference == 2:
+            return 60
+        elif difference == 3:
+            return 40
+        elif difference == 4:
+            return 20
+
+
+# Main Program
+Group = [EventItem('', '', 0) for i in range(5)]
+group0 = EventItem('Bridge', 'jump', 3)
+group1 = EventItem('Water wade', 'swim', 4)
+group2 = EventItem('100 mile run', 'run', 5)
+group3 = EventItem('Gridlock', 'drive', 2)
+group4 = EventItem('Wall on wall', 'jump', 4)
+Group[0] = group0
+Group[1] = group1
+Group[2] = group2
+Group[3] = group3
+Group[4] = group4
+
+character1 = Character('Tarz', 5, 3, 5, 1)
+character2 = Character('Geni', 2, 2, 3, 4)
+
+total1 = 0
+total2 = 0
+for i in range(5):
+    character1_score = character1.CalculateScore(Group[i].GetEventType(), Group[i].GetDifficulty())
+    character2_score = character2.CalculateScore(Group[i].GetEventType(), Group[i].GetDifficulty())
+    if character1_score > character2_score:
+        total1 = total1 + 1
+        print(character1.GetName(), 'has won that event.')
+    elif character2_score > character1_score:
+        total2 = total2 + 1
+        print(character2.GetName(), 'has won that event.')
+    else:
+        print('Event was a draw')
+
+if total1 > total2:
+    print(character1.GetName(), 'is the winner, with', total1, 'points.')
+elif total2 > total1:
+    print(character2.GetName(), 'is the winner, with', total2, 'points.')
+else:
+    print('The match was a draw')
