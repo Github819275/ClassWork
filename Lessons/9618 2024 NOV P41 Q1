@@ -1,0 +1,43 @@
+def ReadData():
+    arr = []
+    file = open('Data.txt', 'r')
+    line = file.readline().strip()
+    while len(line) > 0:
+        arr.append(line)
+        line = file.readline().strip()
+    return arr
+
+
+def FormatArray(p_array):
+    line = ''
+    for i in p_array:
+        line = line + i + ' '
+    return line
+
+
+def CompareStrings(first, second):
+    for i in range(len(first)):
+        if first[i] < second[i]:
+            return 1
+        elif first[i] > second[i]:
+            return 2
+
+
+def Bubble(arr):
+    last = len(arr) - 1
+    status = True
+    while status and last > 0:
+        status = False
+        for i in range(last):
+            if arr[i] > arr[i + 1]:
+                arr[i], arr[i + 1] = arr[i + 1], arr[i]
+                status = True
+        last = last - 1
+    return arr
+
+
+# Main Program
+colours = ReadData()
+print(FormatArray(colours))
+sort = Bubble(colours)
+print(FormatArray(sort))
