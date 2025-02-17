@@ -1,0 +1,75 @@
+class Horse:
+    def __init__(self, n, mfh, ps):
+        self.__Name = n  # PRIVATE Name : STRING
+        self.__MaxFenceHeight = mfh  # PRIVATE MaxFenceHeight : INTEGER
+        self.__PercentageSuccess = ps  # PRIVATE PercentageSuccess : INTEGER
+
+    def GetName(self):
+        return self.__Name
+
+    def GetMaxFenceHeight(self):
+        return self.__MaxFenceHeight
+
+    def Success(self, fence_height, risk):
+        if fence_height > self.__MaxFenceHeight:
+            return 0.2 * self.__PercentageSuccess
+        else:
+            if risk == 1:
+                return self.__PercentageSuccess
+            elif risk == 2:
+                return .9 * self.__PercentageSuccess
+            elif risk == 3:
+                return .8 * self.__PercentageSuccess
+            elif risk == 4:
+                return .7 * self.__PercentageSuccess
+            elif risk == 5:
+                return .6 * self.__PercentageSuccess
+
+
+class Fence:
+    def __init__(self, h, r):
+        self.__Height = h  # PRIVATE Height : INTEGER
+        self.__Risk = r  # PRIVATE Risk : INTEGER
+
+    def GetHeight(self):
+        return self.__Height
+
+    def GetRisk(self):
+        return self.__Risk
+
+
+# Main Program
+Horses = []
+horse1 = Horse('Beauty', 150, 72)
+horse2 = Horse('Jet', 160, 65)
+Horses.append(horse1)
+Horses.append(horse2)
+print(Horses[0].GetName(), Horses[1].GetName())
+
+Course = []
+for i in range(4):
+    input_height = int(input('Enter height: '))
+    while input_height < 70 or input_height > 180:
+        input_height = int(input('Enter height: '))
+    input_risk = int(input('Enter risk: '))
+    while input_risk < 1 or input_risk > 5:
+        input_risk = int(input('Enter risk: '))
+    Course.append(Fence(input_height, input_risk))
+
+total0 = 0
+total1 = 0
+for i in range(4):
+    chance = Horses[0].Success(Course[i].GetHeight(), Course[i].GetRisk())
+    total0 = total0 + chance
+    print('The horse', Horses[0].GetName(), 'at fence', i + 1, 'has a', chance, '% chance of success.')
+print('The horse', Horses[0].GetName(), 'has an average', total0/4, '% chance of jumping over all four fences.')
+for i in range(4):
+    chance = Horses[1].Success(Course[i].GetHeight(), Course[i].GetRisk())
+    total1 = total1 + chance
+    print('The horse', Horses[1].GetName(), 'at fence', i + 1, 'has a', chance, '% chance of success.')
+print('The horse', Horses[1].GetName(), 'has an average', total1/4, '% chance of jumping over all four fences.')
+
+if total0 > total1:
+    print('Higher chance: ', Horses[0].GetName())
+else:
+    print('Higher chance: ', Horses[1].GetName())
