@@ -1,0 +1,52 @@
+LinkedList = [[-1, i+1] for i in range(20)]
+LinkedList[19][1] = -1
+FirstNode = -1
+FirstEmpty = 0
+
+def InsertData():
+    global FirstNode, FirstEmpty
+    count = 1
+    while count <= 5 and FirstEmpty != -1:
+        input_data = int(input('Enter Value: '))
+        if FirstNode == -1:
+            FirstNode = FirstEmpty
+            LinkedList[FirstEmpty][0] = input_data
+            FirstEmpty = LinkedList[FirstEmpty][1]
+            LinkedList[FirstNode][1] = -1
+            count = count + 1
+        else:
+            LinkedList[FirstEmpty][0] = input_data
+            new_node = FirstEmpty
+            FirstEmpty = LinkedList[FirstEmpty][1]
+            LinkedList[new_node][1] = FirstNode
+            FirstNode = new_node
+            count = count + 1
+
+
+def OutputLinkedList():
+    current = FirstNode
+    while current != -1:
+        print(LinkedList[current][0])
+        current = LinkedList[current][1]
+
+
+def RemoveData(rem):
+    global FirstNode, FirstEmpty
+    current = FirstNode
+    while current != -1 and LinkedList[current][0] != rem:
+        previous = current
+        current = LinkedList[current][1]
+    if current == FirstNode:
+        FirstNode = LinkedList[current][1]
+    else:
+        LinkedList[previous][1] = LinkedList[current][1]
+
+    LinkedList[current][1] = FirstEmpty
+    FirstEmpty = current
+
+
+InsertData()
+OutputLinkedList()
+RemoveData(5)
+print('After')
+OutputLinkedList()
