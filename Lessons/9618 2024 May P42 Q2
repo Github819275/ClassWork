@@ -1,0 +1,67 @@
+class Node:
+    def __init__(self, data):
+        self.__LeftPointer = -1  # DECLARE PRIVATE LeftPointer : INTEGER
+        self.__Data = data  # DECLARE PRIVATE Data : INTEGER
+        self.__RightPointer = -1  # DECLARE PRIVATE RightPointer : INTEGER
+
+    def GetLeft(self):
+        return self.__LeftPointer
+
+    def GetRight(self):
+        return self.__RightPointer
+
+    def GetData(self):
+        return self.__Data
+
+    def SetLeft(self, value):
+        self.__LeftPointer = value
+
+    def SetRight(self, value):
+        self.__RightPointer = value
+
+    def SetData(self, value):
+        self.__Data = value
+
+
+class TreeClass:
+    def __init__(self):
+        self.__Tree = [Node(-1) for i in range(20)]  # DECLARE PRIVATE Tree[0:19] : INTEGER
+        self.__FirstNode = -1  # DECLARE PRIVATE FirstNode : INTEGER
+        self.__NumberNodes = 0  # DECLARE PRIVATE NumberNodes : INTEGER
+
+    def InsertNode(self, NewNode):
+        if self.__FirstNode == -1:
+            self.__Tree[self.__NumberNodes] = NewNode
+            self.__NumberNodes += 1
+            self.__FirstNode = 0
+        else:
+            self.__Tree[self.__NumberNodes] = NewNode
+            current_pointer = self.__FirstNode
+            while current_pointer != -1:
+                previous_pointer = current_pointer
+                if NewNode.GetData() < self.__Tree[current_pointer].GetData():
+                    current_pointer = self.__Tree[current_pointer].GetLeft()
+                    move = 'left'
+                else:
+                    current_pointer = self.__Tree[current_pointer].GetRight()
+                    move = 'right'
+            if move == 'left':
+                self.__Tree[previous_pointer].SetLeft(self.__NumberNodes)
+            else:
+                self.__Tree[previous_pointer].SetRight(self.__NumberNodes)
+            self.__NumberNodes += 1
+
+    def OutputTree(self):
+        if self.__NumberNodes == 0:
+            print('No nodes.')
+        else:
+            for i in range(self.__NumberNodes):
+                print(self.__Tree[i].GetLeft(), " ", self.__Tree[i].GetData(), " ", self.__Tree[i].GetRight())
+
+
+# Main Program
+TheTree = TreeClass()
+for j in range(7):
+    user_input = int(input('Enter value: '))
+    TheTree.InsertNode(Node(user_input))
+TheTree.OutputTree()
