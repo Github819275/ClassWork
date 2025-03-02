@@ -1,0 +1,74 @@
+def enqueue(data):
+    global tail_pointer, head_pointer
+    if tail_pointer == 50:
+        print('Queue is full.')
+    else:
+        if head_pointer == -1:
+            head_pointer = 0
+        queue[tail_pointer] = data
+        tail_pointer = tail_pointer + 1
+
+
+def dequeue():
+    global head_pointer
+    if head_pointer == -1:
+        print('Queue is empty.')
+        return ''
+    else:
+        data = queue[head_pointer]
+        head_pointer = head_pointer + 1
+        return data
+
+
+def read_data():
+    file = open('QueueData.txt', 'r')
+    a = file.readline().strip()
+    while len(a) > 0:
+        enqueue(a)
+        a = file.readline().strip()
+    file.close()
+
+
+class RecordData:
+    def __init__(self):
+        self.id = ''  # PUBLIC id :  STRING
+        self.total = 0  # PUBLIC total : INTEGER
+
+
+def total_data():
+    global number_records
+    data_accessed = dequeue()
+    flag = False
+    if number_records == 0:
+        records[number_records].id = data_accessed
+        records[number_records].total = 1
+        flag = True
+        number_records = number_records + 1
+    else:
+        for x in range(number_records):
+            if records[x].id == data_accessed:
+                records[x].total = records[x].total + 1
+                flag = True
+
+    if not flag:
+        records[number_records].id = data_accessed
+        records[number_records].total = 1
+        number_records = number_records + 1
+
+
+def output_records():
+    for i in range(50):
+        if records[i].id != '':
+            print(f"ID  {records[i].id}  Total   {records[i].total}")
+
+
+queue = ['' for i in range(50)]
+head_pointer = -1
+tail_pointer = 0
+read_data()
+
+records = [RecordData() for j in range(50)]  # DECLARE records[0:49] : RecordData
+number_records = 0  # DECLARE number_records : INTEGER
+for i in range(50):
+    total_data()
+output_records()
