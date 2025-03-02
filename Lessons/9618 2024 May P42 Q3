@@ -1,0 +1,44 @@
+NumberArray = [100, 85, 644, 22, 15, 8, 1]
+
+
+def RecursiveInsertion(IntegerArray, NumberElements):
+    if NumberElements <= 1:
+        return IntegerArray
+    else:
+        RecursiveInsertion(IntegerArray, NumberElements - 1)
+        LastItem = IntegerArray[NumberElements - 1]
+        CheckItem = NumberElements - 2
+    LoopAgain = True
+    if CheckItem < 0:
+        LoopAgain = False
+    while LoopAgain:
+        IntegerArray[CheckItem + 1] = IntegerArray[CheckItem]
+        CheckItem -= 1
+        if CheckItem < 0:
+            LoopAgain = False
+        else:
+            if IntegerArray[CheckItem] < LastItem:
+                LoopAgain = False
+
+    IntegerArray[CheckItem + 1] = LastItem
+    return IntegerArray
+
+
+def IterativeInsertion(IntegerArray, NumberElements):
+    for i in range(1, NumberElements):  # Only process up to NumberElements
+        LastItem = IntegerArray[i]
+        CheckItem = i - 1
+        # Shift elements to the right until the correct position for LastItem is found
+        while CheckItem >= 0 and IntegerArray[CheckItem] > LastItem:
+            IntegerArray[CheckItem + 1] = IntegerArray[CheckItem]
+            CheckItem -= 1
+        IntegerArray[CheckItem + 1] = LastItem  # Place LastItem in the correct position
+    return IntegerArray
+
+
+
+
+# Main Program
+arr = IterativeInsertion(NumberArray, 7)
+print('Iterative')
+print(arr)
