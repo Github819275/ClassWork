@@ -46,4 +46,8 @@ emptyList = 5
 
 outputNodes(startPointer)
 status, linkedList, emptyList = addNode(linkedList, startPointer, emptyList)
+if status:
+    print('Data added')
+else:
+    print('Data not added')
 outputNodes(startPointer)
