@@ -1,0 +1,55 @@
+class Picture:
+    def __init__(self, desc, wid, hei, frame):
+        self.__description = desc  # PRIVATE description : STRING
+        self.__width = wid  # PRIVATE width : INTEGER
+        self.__height = hei  # PRIVATE height : INTEGER
+        self.__frameColour = frame  # PRIVATE frameColour : STRING
+
+    def get_description(self):
+        return self.__description
+
+    def get_height(self):
+        return self.__height
+
+    def get_width(self):
+        return self.__width
+
+    def get_frame_colour(self):
+        return self.__frameColour
+
+    def set_description(self, new):
+        self.__description = new
+
+
+def read_data():
+    try:
+        file = open('Pictures.txt', 'r')
+    except:
+        print('FILE NOT FOUND.')
+        return
+    count = 0
+    file_desc = file.readline().strip()
+    while len(file_desc) > 0:
+        file_wid = file.readline().strip()
+        file_hei = file.readline().strip()
+        file_colour = file.readline().strip()
+
+        new_object = Picture(file_desc, file_wid, file_hei, file_colour)
+        picture_array[count] = new_object
+        count = count + 1
+        file_desc = file.readline().strip()
+    return count
+
+
+picture_array = [Picture('', 0, 0, '') for i in range(100)]
+count1 = read_data()
+
+input_colour = input('Enter colour: ')
+input_wid = int(input('Enter width: '))
+input_hei = int(input('Enter height: '))
+
+for i in range(100):
+    if (int(picture_array[i].get_width()) <= input_wid and int(picture_array[i].get_height()) <= input_hei and
+            picture_array[i].get_frame_colour().lower() == input_colour.lower()):
+        print(f"Picture description: {picture_array[i].get_description()}, Width: {picture_array[i].get_width()}, "
+              f"Height: {picture_array[i].get_height()}")
