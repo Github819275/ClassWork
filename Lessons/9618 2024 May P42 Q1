@@ -1,0 +1,51 @@
+WordArray = []
+NumberWords = 0
+
+
+def ReadWords(file_name):
+    global NumberWords
+    file = open(file_name, 'r')
+    line = file.readline().strip()
+    count = -1
+    while len(line) > 0:
+        WordArray.append(line)
+        count = count + 1
+        line = file.readline().strip()
+    file.close()
+    NumberWords = count
+    Play()
+
+
+def Play():
+    score = 0
+    print('Word is', WordArray[0])
+    WordArray[0] = ''
+    print('Number of answers are', NumberWords)
+    user_input = input('Enter word, with no to stop playing: ').lower()
+    while user_input != 'no':
+        found = False
+        for i in range(len(WordArray)):
+            if WordArray[i] == user_input:
+                found = True
+                break
+        if found:
+            score = score + 1
+            WordArray[i] = ''
+            print('Correct answer')
+        else:
+            print('Not an answer or already done!')
+        user_input = input('Enter word, with no to stop playing.').lower()
+
+    print(f'You guessed {round((score*100)/NumberWords, 2)}% of the words.')
+    print('Remaining words: ')
+    remain = ''
+    for i in range(len(WordArray)):
+        if WordArray[i] != '':
+            remain = remain + WordArray[i] + ' '
+    print(remain)
+
+
+# Main Program
+user_file = input('Enter the name of the file, (easy, medium, hard): ').lower()
+user_file = user_file[0].upper() + user_file[1:] + '.txt'
+ReadWords(user_file)
