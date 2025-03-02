@@ -1,0 +1,42 @@
+QueueArray = ['' for i in range(10)]
+HeadPointer = 0
+TailPointer = 0
+Number = 0
+
+def Enqueue(Queue, Head, Tail, NumberItems, DataToAdd):
+    if NumberItems == 10:
+        return False, Queue, Head, Tail, NumberItems
+    Queue[Tail] = DataToAdd
+    if Tail >= 9:
+        Tail = 0
+    else:
+        Tail += 1
+
+    NumberItems += 1
+    return True, Queue, Head, Tail, NumberItems
+
+
+def Dequeue(Head, NumberItems):
+    if NumberItems == 0:
+        return 'False'
+    else:
+        return_value = QueueArray[Head]
+        Head += 1
+        if Head >= 9:
+            Head = 0
+        NumberItems += 1
+        return return_value, Head, NumberItems
+
+
+# Main Program
+for i in range(11):
+    user_input = input('Enter string: ')
+    status, QueueArray, HeadPointer, TailPointer, Number = Enqueue(QueueArray, HeadPointer, TailPointer, Number, user_input)
+    if status:
+        print('Added')
+    else:
+        print('Not added')
+catch, HeadPointer, Number = Dequeue(HeadPointer, Number)
+print(catch)
+catch, HeadPointer, Number = Dequeue(HeadPointer, Number)
+print(catch)
