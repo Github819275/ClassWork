@@ -18,3 +18,16 @@ if not found:
     print('Not Found')
 
 
+# RECURSION
+def binary_search(arr, lower, upper, x):
+    if lower > upper:
+        return -1  # Base case: element not found
+    
+    mid = (lower + upper) // 2
+    
+    if arr[mid] == x:
+        return mid  # Element found, return its index
+    elif x > arr[mid]:
+        return binary_search(arr, mid + 1, upper, x)  # Search right half
+    else:
+        return binary_search(arr, lower, mid - 1, x)  # Search left half
