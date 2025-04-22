@@ -1,6 +1,20 @@
 NumberArray = [100, 85, 644, 22, 15, 8, 1]
 
 
+def BinarySearch(IntegerArray, First, Last, ToFind):
+    if First > Last:
+        return -1
+    else:
+        Middle = (First+Last)//2
+        if IntegerArray[Middle] == ToFind:
+            return Middle
+        elif IntegerArray[Middle] > ToFind:
+            return BinarySearch(IntegerArray, First, Middle-1, ToFind)
+        elif IntegerArray[Middle] < ToFind:
+            return BinarySearch(IntegerArray, Middle+1, Last, ToFind)
+
+
+
 def RecursiveInsertion(IntegerArray, NumberElements):
     if NumberElements <= 1:
         return IntegerArray
@@ -42,3 +56,9 @@ def IterativeInsertion(IntegerArray, NumberElements):
 arr = IterativeInsertion(NumberArray, 7)
 print('Iterative')
 print(arr)
+
+binary = BinarySearch(arr, 0,6, 644)
+if binary == -1:
+    print('not found')
+else:
+    print('found')
