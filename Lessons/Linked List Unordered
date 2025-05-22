@@ -29,7 +29,7 @@ def insert():
         linkedlist[freePointer].data = item
         new_node = freePointer
         freePointer = linkedlist[freePointer].pointer
-
+        # new node is added to the beginning of the list
         linkedlist[new_node].pointer = startPointer
         startPointer = new_node
     else:
